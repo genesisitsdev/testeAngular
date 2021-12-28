@@ -1,0 +1,123 @@
+<div *ngIf="message.error" class="alert alert-danger">
+  <div style="font-size: 21px">
+    {{ message.error }}
+  </div>
+</div>
+<div *ngIf="message.success" class="alert alert-success">
+  <div style="font-size: 21px">
+    {{ message.success }}
+  </div>
+</div>
+
+<div class="shadow p-3 mb-5 bg-white rounded" *ngIf="optionsList">
+  <ul *ngFor="let item of films" class="list-group mb-3">
+    <img width="260" height="300" src="{{ item.post }}" class="mb-3" />
+    <li class="list-group-item">
+      <strong> Filmes:</strong>
+      <span class="text-capitalize"> {{ item.name }} </span>
+    </li>
+    <li class="list-group-item"><strong>Laçamento:</strong> {{ item.date }}</li>
+    <li class="list-group-item">
+      <strong>Descrição:</strong> {{ item.description }}
+    </li>
+    <li class="list-group-item">
+      <strong>Diretor:</strong>
+      <span class="text-capitalize"> {{ item.director }} </span>
+    </li>
+    <li class="list-group-item">
+      <strong>Gênero:</strong>
+      <span class="text-capitalize"> {{ item.gender }} </span>
+    </li>
+  </ul>
+
+  <div>
+    <button type="submit" (click)="changeOption()" class="btn btn-primary">
+      Adicionar filme
+    </button>
+  </div>
+</div>
+
+<div class="shadow p-3 mb-5 bg-white rounded" *ngIf="!optionsList">
+  <label class="text-center mb-3 mx-auto">Criação de filmes</label>
+  <form>
+    <div class="form-row mt-2">
+      <div class="form-group col-md-6">
+        <label for="inputName">Nome</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="inputName"
+          [(ngModel)]="model.name"
+          placeholder="digite o nome do filme..."
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputDirector">Diretor</label>
+        <input
+          type="text"
+          name="director"
+          class="form-control"
+          [(ngModel)]="model.director"
+          id="inputDirector"
+          placeholder="Digite o nome do diretor..."
+        />
+      </div>
+    </div>
+    <div class="form-group mt-2">
+      <label for="inputDate">Ano</label>
+      <input
+        type="date"
+        class="form-control"
+        id="inputDate"
+        name="date"
+        placeholder="dd-mm-yyyy"
+        [(ngModel)]="model.date"
+      />
+    </div>
+    <div class="form-group mt-2">
+      <label for="inputGender">Gênero</label>
+      <input
+        type="text"
+        name="gender"
+        class="form-control"
+        [(ngModel)]="model.gender"
+        id="inputGender"
+        placeholder="Digite o gênero do filme..."
+      />
+    </div>
+    <div class="form-group mt-2">
+      <label for="inputDescription">Descrição</label>
+      <textarea
+        type="text"
+        class="form-control"
+        name="description"
+        [(ngModel)]="model.description"
+        id="inputDescription"
+        placeholder="Digite o Descrição do filme..."
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group mt-2">
+      <label for="inputGender">Pôster</label>
+      <input
+        type="text"
+        class="form-control"
+        name="post"
+        [(ngModel)]="model.post"
+        id="inputGender"
+        placeholder="Digite o pôster do filme..."
+      />
+      <label class="text-muted mt-2">* O pôster deverá ser uma url.</label>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <button type="submit" (click)="changeOption()" class="btn btn-primary">
+        Voltar
+      </button>
+      <button type="submit" (click)="addFilm()" class="btn btn-primary">
+        Criar
+      </button>
+    </div>
+  </form>
+</div>
